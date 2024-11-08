@@ -10,4 +10,5 @@ Brands, A. M., Devore, S., Devinsky, O., Doyle, W., Flinker, A., Friedman, D., .
 
 adapting it to predict short- and moderate-term neural adaptation to cortical microstimulation, relevant for the development of cortical visual prostheses capable of delivering stable visual information.
 
-The model extends on the original model in two main ways, to capture the neural dynamics of MUA recordings of the early visual cortex, recorded by Utah microelectrode arrays: (1) the model is extended to contain two divisive normalization stages, enabling it to capture the more local MUA dynamics and the moderate-term repetition effects. (2) the model employs power laws instead of exponential functions found better suited in capturing the dynamics over many repeated stimuli.
+The model extends on the original model in two main ways, to capture the neural dynamics of MUA recordings of the early visual cortex, recorded by Utah microelectrode arrays: 
+(1) the model is extended to contain two divisive normalization stages, enabling it to capture the more local MUA dynamics and the moderate-term repetition effects. (2) the model employs power laws instead of exponential functions found better suited in capturing the dynamics over many repeated stimuli.
