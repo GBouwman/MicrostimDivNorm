@@ -1,4 +1,4 @@
-from experiments.Self_contained_DivNorm.DivNormModel import Adapted_DN_Model
+import Adapted_DN_Model
 import numpy as np
 import matplotlib as mpl
 mpl.use('Qt5Agg') # TkAgg
