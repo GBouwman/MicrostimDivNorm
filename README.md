@@ -18,8 +18,8 @@ The model extends the original by:
 
 ### Repository Contents
 
-- The adapted divisive normalization model
-- A script for generating model responses to the stimulus-interval values used in the thesis, based on parameters fitted to human recordings
+- The adapted divisive normalization model (DivNormModel.py)
+- A script for generating model responses to the stimulus-interval values used in the thesis, based on parameters fitted to human recordings (GenerateMUA.py)
 
 ### Dependencies
 
