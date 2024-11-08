@@ -88,9 +88,6 @@ class Adapted_DN_Model:
         self.t = np.arange(0, self.numtimepts) / self.srate
 
         # compute the impulse response function (used in the nominator, convolution of the stimulus) were m = 2
-        #self.irf = self.gammaPDF(self.t, self.tau, 2) + self.a * (self.t + 1) ** -self.w
-        #self.irf = self.gammaPDF(self.t, self.tau, 2) + self.gammaPDF(self.t, self.a, 2)
-        #self.irf = self.gammaPDF(self.t, self.tau, 2)
 
         self.irf = gamma.pdf(self.t, self.tau, loc=1e-10)
         self.irf = self.irf / np.sum(self.irf) # Normalize the IRF
@@ -243,32 +240,6 @@ class Adapted_DN_Model:
 
         return exp
 
-    # def norm(self, input, linrsp):
-    #     """ Normalization of the input.
-
-    #     params
-    #     -----------------------
-    #     input : float
-    #         array containing values of input timecourse
-    #     linrsp : float
-    #         array containing values of linear response
-
-    #     returns
-    #     -----------------------
-    #     rsp : float
-    #         adapted response
-
-    #     """
-
-    #     # compute the normalized response
-    #     demrsp = self.sigma**self.n + abs(linrsp)**self.n                       # semi-saturate + exponentiate
-    #     normrsp = input/demrsp                                                  # divide
-
-    #     # scale with gain
-    #     rsp = self.scale * normrsp
-
-    #     return rsp
-
     def vectorized_hold_signal(self,signal, mask):
         # Identify the start of each block of 1s
         starts = np.where((mask[:-1] == 0) & (mask[1:] == 1))[0] + 1
@@ -339,11 +310,9 @@ class Adapted_DN_Model:
         if self.disable_long:
             demrsp = self.hold_signal_to_next_block(demrsp, self.stimin)
 
-        # TODO: Perhaps the short term adaptation should be exp/pow(+1) instead of exp(-1) --> Surpression increases over time
         poolrsp_short = np.convolve(linrsp, self.norm_irf_short, 'full')  # delay
         #poolrsp_short = self.apply_short_term_adaptation_irf(linrsp, self.norm_irf_short, self.stimin)
         poolrsp_short = poolrsp_short[0:self.numtimepts]
-        # TODO: decouple sigma and n for short term adaptation from long term adaptation ?
         demrsp_short = self.sigma ** self.n + abs(poolrsp_short) ** self.n  # semi-saturate + exponentiate
 
 
